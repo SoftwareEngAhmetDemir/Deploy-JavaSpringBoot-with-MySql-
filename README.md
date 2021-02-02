@@ -9,30 +9,18 @@ After That :
   2) add app.yaml in the root file 
   3) write these instructions inside the app.yaml :
  runtime: java
- 
-env: standard
-
+env: flex
 runtime_config:
-
-jdk: openjdk8
-
-env_variables:
- 
- SPRING_PROFILES_ACTIVE: "gcp,mysql"
-
+  jdk: openjdk8
 handlers:
-
-url: /.*
-
-script: this field is required, but ignored
-
-manual_scaling: 
- 
-instances: 1
+- url: /.*
+  script: auto
+  http_headers:
+   Access-Control-Allow-Origin: /*
   
  4) application.propereties 
         server.port=${port:8081}			  
-spring.datasource.url=jdbc:mysql://ip for sql /instance name
+spring.datasource.url=jdbc:mysql://ip for sql /db name
 spring.datasource.username= username
 spring.datasource.password=password
 spring.jpa.hibernate.ddl-auto=update
